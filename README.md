@@ -1,14 +1,16 @@
-# LOG736 Toolchain
+# LOG736 Images
 
-Container image used to build and execute LOG736 laboratory submissions.
+Public container images used by the LOG736 laboratory infrastructure.
 
-## Image
+Both images are based on Ubuntu 24.04.
+
+## Toolchain
 
 ```text
 ghcr.io/ets-log736/toolchain:a2026
 ```
 
-The image is based on Ubuntu 24.04 and contains:
+Contains:
 
 - C and C++ (`gcc`, `g++`, `make`)
 - Go
@@ -17,35 +19,62 @@ The image is based on Ubuntu 24.04 and contains:
 - Node.js and npm
 - Git and basic Unix tools
 
-## Pull
+Pull:
 
 ```sh
 podman pull ghcr.io/ets-log736/toolchain:a2026
 ```
 
+Verify:
+
+```sh
+./verify-toolchain.sh ghcr.io/ets-log736/toolchain:a2026
+```
+
+## Public harness
+
+```text
+ghcr.io/ets-log736/harness:a2026
+```
+
+Contains the public Lab 1 infrastructure services:
+
+- simulated local clock;
+- NDJSON fault router.
+
+Pull:
+
+```sh
+podman pull ghcr.io/ets-log736/harness:a2026
+```
+
+Verify:
+
+```sh
+./verify-harness.sh ghcr.io/ets-log736/harness:a2026
+```
+
 ## Build locally
 
 ```sh
-podman build \
-  -f Containerfile \
-  -t localhost/log736/toolchain:a2026 \
-  .
-```
+podman build -f Containerfile \
+  -t localhost/log736/toolchain:a2026 .
 
-## Verify locally
-
-```sh
-./verify-toolchain.sh localhost/log736/toolchain:a2026
+podman build -f Containerfile.harness \
+  -t ghcr.io/ets-log736/harness:a2026 .
 ```
 
 ## Publication
 
-Pushing a change to `Containerfile` or the publishing workflow on `main`
-triggers GitHub Actions and publishes:
+Pushing changes to `main` automatically publishes:
 
 ```text
 ghcr.io/ets-log736/toolchain:a2026
+ghcr.io/ets-log736/harness:a2026
 ```
 
-After the first publication, make the GHCR package public in the package
-settings so students can pull it without GitHub authentication.
+Both GHCR packages should be configured as public so that students and
+laboratory machines can pull them anonymously.
+
+Hidden scenarios, grading logic, and evaluator secrets are not included in
+either image.
