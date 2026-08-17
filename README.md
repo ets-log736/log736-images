@@ -58,7 +58,7 @@ Verify:
 
 ```sh
 podman build -f Containerfile \
-  -t localhost/log736/toolchain:a2026 .
+  -t localhost/ets-log736/toolchain:a2026 .
 
 podman build -f Containerfile.harness \
   -t ghcr.io/ets-log736/harness:a2026 .
