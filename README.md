@@ -83,3 +83,8 @@ either image.
 ## Lab 2
 
 The public harness also contains `raft_client.py`, used by the Lab 2 public Raft scenarios.
+
+## Lab 3
+
+The public harness also contains `counter_client.py`, used by the Lab 3 public
+quorum, PN-Counter and eventual-consistency scenarios.
