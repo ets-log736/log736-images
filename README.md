@@ -78,3 +78,8 @@ laboratory machines can pull them anonymously.
 
 Hidden scenarios, grading logic, and evaluator secrets are not included in
 either image.
+
+
+## Lab 2
+
+The public harness also contains `raft_client.py`, used by the Lab 2 public Raft scenarios.

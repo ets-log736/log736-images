@@ -18,7 +18,7 @@ RUN apt-get update \
 
 WORKDIR /opt/log736
 
-COPY harness/clock_service.py harness/fault_router.py /opt/log736/
+COPY harness/ /opt/log736/
 
 USER 65532:65532
 
